@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm3udpiypre75"]
+
+[ext_resource type="Script" path="res://scripts/content.gd" id="1_iy4pf"]
+[ext_resource type="AudioStream" uid="uid://clxutibcfmk78" path="res://assets/Stick The Landing - Everet Almond.mp3" id="2_b71pl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsfbm"]
+bg_color = Color(0.457264, 0.21975, 0.0140963, 1)
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_omc0h"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_12yut"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="Panel" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -554.0
+offset_top = -292.0
+offset_right = 554.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bsfbm")
+script = ExtResource("1_iy4pf")
+
+[node name="MicInput" type="AudioStreamPlayer" parent="Content"]
+stream = SubResource("AudioStreamMicrophone_omc0h")
+autoplay = true
+bus = &"Record"
+
+[node name="Output" type="AudioStreamPlayer" parent="Content"]
+stream = SubResource("AudioStreamMicrophone_12yut")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="Content"]
+stream = ExtResource("2_b71pl")
+bus = &"Music"
+
+[node name="RecordButton" type="Button" parent="Content"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = -217.0
+offset_right = 393.0
+offset_bottom = -127.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Record"
+
+[node name="PlayButton" type="Button" parent="Content"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = -49.0
+offset_right = 393.0
+offset_bottom = 41.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Play"
+
+[node name="MusicButton" type="Button" parent="Content"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = 127.0
+offset_right = 393.0
+offset_bottom = 217.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Play Music"
+
+[node name="Line2D" type="Line2D" parent="Content"]
+position = Vector2(474, 286)
+
+[connection signal="finished" from="Content/Output" to="Content" method="_on_output_finished"]
+[connection signal="pressed" from="Content/RecordButton" to="Content" method="_on_record_button_pressed"]
+[connection signal="pressed" from="Content/PlayButton" to="Content" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Content/MusicButton" to="Content" method="_on_music_button_pressed"]

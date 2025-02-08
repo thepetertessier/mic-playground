@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://clxutibcfmk78"
+path="res://.godot/imported/Stick The Landing - Everet Almond.mp3-71b2931a69c6070aef51601a9cfbfd0b.mp3str"
+
+[deps]
+
+source_file="res://assets/Stick The Landing - Everet Almond.mp3"
+dest_files=["res://.godot/imported/Stick The Landing - Everet Almond.mp3-71b2931a69c6070aef51601a9cfbfd0b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
